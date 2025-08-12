@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'app/css/phone5.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/tour_list12.css' %}">
+{% endblock %}
+
+{% block phone %}
+<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone2 %}
+<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone3 %}
+<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone4 %}
+<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone5 %}
+<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block destinations_options %}
+    {% for destination in destinations %}
+        <option value="{{ destination.slug }}" {% if destination.id == destination_selected.id %} selected {% endif %}>{{ destination.name }}</option>
+    {% endfor %}
+{% endblock %}
+
+{% block category_options %}
+    {% for category in categories %}
+        <option value="{{ category.slug }}"{% if category.id == category_selected.id %} selected {% endif %}>{{ category.title }}</option>
+    {% endfor %}
+{% endblock category_options %}
+
+{% block content %}
+    {% if tours %}
+        <section class="tours">
+            {% for tour in tours %}
+                <div class="tour-container{% if forloop.first %} aqua-bg{% elif forloop.last %} white-bg{% elif forloop.counter|divisibleby:2 %} white-bg{% else %} aqua-bg{% endif %}">
+                    <img src="{{ tour.main_image.url }}" alt="Tour Image">
+                    <div class="tour-content">
+                        <div class="tour-text">
+                            <h1 class="tour-title">{{ tour.title }}</h1>
+                            <p class="tour-description">{{ tour.short_description }}</p>
+                        </div>
+
+                        <div class="tour-price">
+                            <div class="price-container">
+                                <b class="adult">{% trans "Adult" %}</b>
+                                <b class="price">${{ tour.adult_price }} <span class="USD">USD</span></b>
+                            </div>
+                            {% if tour.link %}
+                                <a href="{{tour.link}}" class="book-now">BOOK NOW</a>
+                            {% else %}
+                                <a href="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" class="book-now">BOOK NOW</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+
+    {% else %}
+        <section class="no-tours-found">
+            <div class="ntf-card">
+                <div class="ntf-icon">😕</div>
+                <h2 class="ntf-title">Not tours found</h2>
+                <p class="ntf-sub">Try changing the destination or category.</p>
+            </div>
+        </section>
+        <style>
+        .no-tours-found{display:flex;align-items:center;justify-content:center;padding:60px 16px}
+        .ntf-card{max-width:800px;width:100%;text-align:center;background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);border:2px solid #ff6b6b;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,.15);padding:32px;animation:pop .6s ease}
+        .ntf-icon{font-size:56px;margin-bottom:12px}
+        .ntf-title{margin:0;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:#c0392b;font-size:28px}
+        .ntf-sub{margin:8px 0 0;color:#6b7280;font-size:16px}
+        @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+        @media (min-width:768px){.ntf-title{font-size:36px}.ntf-sub{font-size:18px}}
+        </style>
+    {% endif %}
+
+{% endblock %}
+
+{% block footer-logo %}
+    <a href="{% url 'home' %}" class="fixed-logo" style="background-image: url('{% static 'svg/logo.svg' %}');"></a>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const destinationSelect = document.getElementById('destination-select');
+    const categorySelect = document.getElementById('category-select');
+    const findTourBtn = document.getElementById('find-tour-btn');
+
+    // Datos de categorías por destino
+    const categoriesByDestination = {
+        {% for destination in destinations %}
+            '{{ destination.slug }}': [
+                {% for category in destination.categories.all %}
+                    {slug: '{{ category.slug }}', title: '{{ category.title }}'}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    // Función para actualizar las opciones de categoría y seleccionar la primera
+    function updateCategoryOptions(destinationSlug) {
+        categorySelect.innerHTML = ''; // Limpiar opciones
+        
+        if (destinationSlug && categoriesByDestination[destinationSlug]) {
+            const categories = categoriesByDestination[destinationSlug];
+            
+            // Agregar todas las categorías y seleccionar la primera
+            categories.forEach((category, index) => {
+                const option = document.createElement('option');
+                option.value = category.slug;
+                option.textContent = category.title;
+                categorySelect.appendChild(option);
+                
+                // Seleccionar la categoría seleccionada previamente
+                if (category.slug == '{{ category_selected.slug }}') {
+                    option.selected = true;
+                }
+            });
+        }
+    }
+
+    // Event listener para cambios en el select de destino
+    destinationSelect.addEventListener('change', function() {
+        updateCategoryOptions(this.value);
+    });
+
+    // Inicializar con la primera categoría del primer destino (si existe)
+    if (destinationSelect.value) {
+        updateCategoryOptions(destinationSelect.value);
+    }
+});
+</script>
+{% endblock %}

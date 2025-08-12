@@ -1,0 +1,200 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{% static 'svg/favicon.svg' %}">
+    <title>Cubatram</title>
+    <link rel="stylesheet" href="{% static 'css/base16.css' %}">
+    {% block extracss %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <!-- Logo fijo fuera del carousel -->
+        <a href="{% url 'home' %}" class="logo fixed-logo" style="background-image: url('{% static 'svg/logo.svg' %}');"></a>
+        
+        <div class="header-carousel">
+            <div class="header-slide active" style="background-image: url('{% if hero_section.background_image %}{{ hero_section.background_image.url }}{% else %}{% static 'img/banner.jpg' %}{% endif %}');">
+                {% block phone %}{% endblock phone %}
+                <div class="top-buttons">
+                    <button class="top-btn">About Us</button>
+                    <button class="top-btn">Blog</button>
+                    <button class="top-btn">FAQs</button>
+                </div>
+            </div>
+
+            {% if hero_section.background_image2 %}
+                <div class="header-slide" style="background-image: url('{{ hero_section.background_image2.url }}');">
+                    {% block phone2 %}{% endblock phone2 %}
+                    <div class="top-buttons">
+                        <button class="top-btn">About Us</button>
+                        <button class="top-btn">Blog</button>
+                        <button class="top-btn">FAQs</button>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if hero_section.background_image3 %}
+                <div class="header-slide" style="background-image: url('{{ hero_section.background_image3.url }}');">
+                    {% block phone3 %}{% endblock phone3 %}
+                    <div class="top-buttons">
+                        <button class="top-btn">About Us</button>
+                        <button class="top-btn">Blog</button>
+                        <button class="top-btn">FAQs</button>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if hero_section.background_image4 %}
+                <div class="header-slide" style="background-image: url('{{ hero_section.background_image4.url }}');">
+                    {% block phone4 %}{% endblock phone4 %}
+                    <div class="top-buttons">
+                        <button class="top-btn">About Us</button>
+                        <button class="top-btn">Blog</button>
+                        <button class="top-btn">FAQs</button>
+                    </div>
+                </div>
+            {% endif %}
+            
+            {% if hero_section.background_image5 %}
+                <div class="header-slide" style="background-image: url('{{ hero_section.background_image5.url }}');">
+                    {% block phone5 %}{% endblock phone5 %}
+                    <div class="top-buttons">
+                        <button class="top-btn">About Us</button>
+                        <button class="top-btn">Blog</button>
+                        <button class="top-btn">FAQs</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="button-list">
+            <button class="filter-btn">
+                <select id="destination-select" name="destination">
+                    {% block destinations_options %}{% endblock destinations_options %}
+                </select>
+            </button>
+
+            <button class="filter-btn">
+                <select id="category-select" name="category">
+                    {% block category_options %}{% endblock category_options %}
+                </select>
+            </button>
+
+            <button id="find-tour-btn" class="action-btn">Find a Tour</button>
+        </div>
+    </header>
+
+    {% if messages %}
+        <div id="flash-message" class="flash-message">
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="contact-cards">
+            {% for destination in destinations|slice:":3" %}
+                <div class="contact-card">
+                    <h3 class="contact-card-title">{{destination.name}}</h3>
+                    <a href="mailto:{{destination.email}}" class="contact-card-email">Email Us</a>
+                </div>
+            {% empty %}
+                <div class="contact-card">
+                    <h3 class="contact-card-title">Antigua</h3>
+                    <a href="" class="contact-card-email">Email Us</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3 class="contact-card-title">Barbados</h3>
+                    <a href="" class="contact-card-email">Email Us</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3 class="contact-card-title">St. Lucia</h3>
+                    <a href="" class="contact-card-email">Email Us</a>
+                </div>
+            {% endfor %}
+
+            <div class="translate-btn">
+                <form action="{% url 'set_language' %}" method="post" id="language-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <select name="language" id="language-selector" onchange="this.form.submit()">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                {{ language.name_local }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+        </div>
+
+        <div class="ribbon">
+            {% block footer-logo %}
+            {% endblock %}
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main2.js' %}"></script>
+    <script src="{% static 'js/flash-message.js' %}"></script>
+    <script>
+    // Inactivity redirect: 5 minutes (300000 ms)
+    (function(){
+        var INACTIVITY_LIMIT = 5*60*1000; // 5 minutes
+        var timerId = null;
+        var homeUrl = "{% url 'home' %}";
+
+        function isOnHome(){
+            try {
+                var target = new URL(homeUrl, window.location.origin);
+                return window.location.pathname === target.pathname;
+            } catch(e) { return false; }
+        }
+
+        function redirectHome(){
+            if (!isOnHome()) {
+                window.location.href = homeUrl;
+            } else {
+                // If already on home, just reset to avoid reload loop
+                resetTimer();
+            }
+        }
+
+        function resetTimer(){
+            if (timerId) { clearTimeout(timerId); }
+            timerId = setTimeout(redirectHome, INACTIVITY_LIMIT);
+        }
+
+        // Consider these interactions as activity
+        ['mousemove','keydown','scroll','click','touchstart','touchmove','wheel','focus'].forEach(function(evt){
+            window.addEventListener(evt, resetTimer, { passive: true });
+        });
+        document.addEventListener('visibilitychange', function(){
+            // When tab becomes visible again, treat as activity
+            if (!document.hidden) resetTimer();
+        });
+
+        // Start timer on load
+        resetTimer();
+        window.addEventListener('beforeunload', function(){ if (timerId) clearTimeout(timerId); });
+    })();
+    </script>
+
+    {% block extrajs %}
+    {% endblock %}
+</body>
+</html>

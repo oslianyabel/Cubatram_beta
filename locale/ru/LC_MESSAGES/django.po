@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-04 14:40-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\home\templates\emails\booking_notification.html:5
+msgid "New reservation received!"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:7
+msgid "Tour details:"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:8
+#: .\home\templates\home\tour_detail.html:78
+msgid "Tour"
+msgstr "Тур"
+
+#: .\home\templates\emails\booking_notification.html:9
+#: .\home\templates\home\tour_detail.html:79
+#: .\home\templates\home\tour_detail.html:98
+msgid "Date"
+msgstr "Дата"
+
+#: .\home\templates\emails\booking_notification.html:10
+#: .\home\templates\home\tour_detail.html:80
+msgid "Adults"
+msgstr "Взрослые"
+
+#: .\home\templates\emails\booking_notification.html:11
+msgid "Kids (6-12 years)"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:12
+msgid "Children (0-5 years)"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:13
+msgid "Total price"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:15
+msgid "Client information:"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:16
+msgid "Name"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:17
+#: .\home\templates\home\tour_detail.html:131
+msgid "Email"
+msgstr "Электронная почта"
+
+#: .\home\templates\emails\booking_notification.html:18
+msgid "Phone"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:19
+msgid "Country"
+msgstr ""
+
+#: .\home\templates\emails\booking_notification.html:21
+msgid "Special requests:"
+msgstr ""
+
+#: .\home\templates\home\home.html:26 .\home\templates\home\home.html:31
+#: .\home\templates\home\home.html:35 .\home\templates\home\home.html:39
+#: .\home\templates\home\select_category.html:47
+msgid "View Tours"
+msgstr "Смотреть туры"
+
+#: .\home\templates\home\tour_detail.html:40
+msgid "Adult Price"
+msgstr "Цена для взрослых"
+
+#: .\home\templates\home\tour_detail.html:44
+msgid "Kids Price"
+msgstr "Цена для детей"
+
+#: .\home\templates\home\tour_detail.html:48
+msgid "Children Price"
+msgstr "Цена для малышей"
+
+#: .\home\templates\home\tour_detail.html:81
+msgid "Kids"
+msgstr "Дети"
+
+#: .\home\templates\home\tour_detail.html:82
+msgid "Children"
+msgstr "Малыши"
+
+#: .\home\templates\home\tour_detail.html:83
+msgid "Total Price"
+msgstr "Итоговая цена"
+
+#: .\home\templates\home\tour_detail.html:89
+msgid "Book Your Tour"
+msgstr "Забронируйте тур"
+
+#: .\home\templates\home\tour_detail.html:96
+msgid "Tour Details"
+msgstr "Детали тура"
+
+#: .\home\templates\home\tour_detail.html:103
+msgid "Number of Adults"
+msgstr "Количество взрослых"
+
+#: .\home\templates\home\tour_detail.html:108
+msgid "Number of Kids (6-12 years)"
+msgstr "Количество детей (6-12 лет)"
+
+#: .\home\templates\home\tour_detail.html:113
+msgid "Number of Children (0-5 years)"
+msgstr "Количество малышей (0-5 лет)"
+
+#: .\home\templates\home\tour_detail.html:118
+msgid "Pickup Location"
+msgstr "Место встречи"
+
+#: .\home\templates\home\tour_detail.html:124
+msgid "Contact Details"
+msgstr "Контактные данные"
+
+#: .\home\templates\home\tour_detail.html:126
+msgid "Full Name"
+msgstr "Полное имя"
+
+#: .\home\templates\home\tour_detail.html:136
+msgid "Phone Number"
+msgstr "Телефон"
+
+#: .\home\templates\home\tour_detail.html:141
+msgid "Country of Residence"
+msgstr "Страна проживания"
+
+#: .\home\templates\home\tour_detail.html:146
+msgid "Special Requests/Comments"
+msgstr "Особые пожелания / Комментарии"
+
+#: .\home\templates\home\tour_detail.html:152
+msgid "Total (USD)"
+msgstr "Итого (USD)"
+
+#: .\home\templates\home\tour_list.html:56
+#: .\home\templates\home\tour_list.html:80
+msgid "Adult"
+msgstr "Взрослый"

@@ -1,0 +1,17 @@
+New reservation received!
+
+Tour: {{ booking.tour.title }}
+Date: {{ booking.date }}
+Adults: {{ booking.adults }}
+Kids (6-12 years): {{ booking.kids }}
+Children (0-5 years): {{ booking.children }}
+Total price: ${{ booking.total_price }}
+
+Client information:
+Name: {{ booking.full_name }}
+Email: {{ booking.email }}
+Phone: {{ booking.phone }}
+Country: {{ booking.country }}
+
+Special requests:
+{{ booking.special_requests }}

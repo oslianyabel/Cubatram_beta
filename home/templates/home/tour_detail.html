@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'app/css/phone5.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/tour_detail5.css' %}">
+{% endblock %}
+
+{% block phone %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone2 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone3 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block destinations_options %}
+    {% for destination in destinations %}
+        <option value="{{ destination.slug }}" {% if destination.id == destination_selected.id %} selected {% endif %}>{{ destination.name }}</option>
+    {% endfor %}
+{% endblock %}
+
+{% block category_options %}
+    {% for category in categories %}
+        <option value="{{ category.slug }}"{% if category.id == category_selected.id %} selected {% endif %}>{{ category.title }}</option>
+    {% endfor %}
+{% endblock category_options %}
+
+{% block content %}
+    <section class="tour-book">
+        <div class="tour-info">
+            <h1 class="tour-title">{{ tour.title }}</h1>
+            <div class="tour-price">
+                {% if tour.adult_price %}
+                    <b>{% trans "Adult Price" %}: ${{ tour.adult_price }} USD</b>
+                {% endif %}
+
+                {% if tour.kids_price %}
+                    <b>{% trans "Kids Price" %}: ${{ tour.kids_price }} USD</b>
+                {% endif %}
+
+                {% if tour.children_price %}
+                    <b>{% trans "Children Price" %}: ${{ tour.children_price }}</b>
+                {% endif %}
+            </div>
+            <p class="tour-description">{{ tour.short_description }}</p>
+            <div class="wall">
+                {% if tour.image2 %}
+                    <img src="{{ tour.image2.url }}" alt="Tour Image 2">
+                {% endif %}
+
+                {% if tour.image3 %}
+                    <img src="{{ tour.image3.url }}" alt="Tour Image 3">
+                {% endif %}
+
+                {% if tour.image4 %}
+                    <img src="{{ tour.image4.url }}" alt="Tour Image 4">
+                {% endif %}
+
+                {% if tour.image5 %}
+                    <img src="{{ tour.image5.url }}" alt="Tour Image 5">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="book">
+            {% if messages %}
+                <div class="success-message">
+                    {% for message in messages %}
+                        <h1 class="book-title">{{ message }}</h1>
+                        {% if form_data %}
+                            <div class="summary">
+                                <p><strong>{% trans "Tour" %}:</strong> {{ tour.title }}</p>
+                                <p><strong>{% trans "Date" %}:</strong> {{ form_data.date }}</p>
+                                <p><strong>{% trans "Adults" %}:</strong> {{ form_data.adults }}</p>
+                                <p><strong>{% trans "Kids" %}:</strong> {{ form_data.kids }}</p>
+                                <p><strong>{% trans "Children" %}:</strong> {{ form_data.children }}</p>
+                                <p><strong>{% trans "Total Price" %}:</strong> ${{ form_data.total_price }} USD</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h1 class="book-title">{% trans "Book Your Tour" %}</h1>
+            {% endif %}
+
+            <form action="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" method="post" id="booking-form">
+                {% csrf_token %}
+                
+                <div class="form-section">
+                    <h2>{% trans "Tour Details" %}</h2>
+                    <div class="form-group">
+                        <label for="date">{% trans "Date" %}:</label>
+                        <input type="date" id="date" name="date" value="{% if form_data %}{{ form_data.date }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adults">{% trans "Number of Adults" %}:</label>
+                        <input type="number" id="adults" name="adults" min="1" max="{{ tour.max_participants }}" value="{% if form_data %}{{ form_data.adults }}{% else %}1{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kids">{% trans "Number of Kids (6-12 years)" %}:</label>
+                        <input type="number" id="kids" name="kids" min="0" max="{{ tour.max_participants }}" value="{% if form_data %}{{ form_data.kids }}{% else %}0{% endif %}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="children">{% trans "Number of Children (0-5 years)" %}:</label>
+                        <input type="number" id="children" name="children" min="0" max="{{ tour.max_participants }}" value="{% if form_data %}{{ form_data.children }}{% else %}0{% endif %}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pickup">{% trans "Pickup Location" %}:</label>
+                        <input type="text" id="pickup" name="pickup" value="{% if form_data %}{{ form_data.pickup }}{% endif %}" required>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>{% trans "Contact Details" %}</h2>
+                    <div class="form-group">
+                        <label for="name">{% trans "Full Name" %}:</label>
+                        <input type="text" id="name" name="name" value="{% if form_data %}{{ form_data.name }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">{% trans "Email" %}:</label>
+                        <input type="email" id="email" name="email" value="{% if form_data %}{{ form_data.email }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone_field">{% trans "Phone Number" %}:</label>
+                        <input type="tel" id="phone_field" name="phone" value="{% if form_data %}{{ form_data.phone }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">{% trans "Country of Residence" %}:</label>
+                        <input type="text" id="country" name="country" value="{% if form_data %}{{ form_data.country }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">{% trans "Special Requests/Comments" %}:</label>
+                        <textarea id="comments" name="comments" rows="3">{% if form_data %}{{ form_data.comments }}{% endif %}</textarea>
+                    </div>
+                </div>
+                
+                <div class="price-summary">
+                    <h3>{% trans "Total (USD)" %}: </h3>
+                    <h3 id="total-price">${{ form_data.total_price|default:tour.adult_price }}</h3>
+                </div>
+
+                <!-- reCAPTCHA widget -->
+                <div class="form-group" style="margin: 20px 0;">
+                    <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                    {% if recaptcha_error %}
+                        <p style="color: red;">{{ recaptcha_error }}</p>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <span class="btn-text">Send Request</span>
+                    <span class="loading-spinner" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                                <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416;0 31.416" repeatCount="indefinite"/>
+                                <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416;-31.416" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                        Sending...
+                    </span>
+                </button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer-logo %}
+    <a href="{% url 'home' %}" class="fixed-logo" style="background-image: url('{% static 'svg/logo.svg' %}');"></a>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const adultsInput = document.getElementById('adults');
+        const kidsInput = document.getElementById('kids');
+        const childrenInput = document.getElementById('children');
+        const totalPriceElement = document.getElementById('total-price');
+        
+        const adultPrice = parseFloat('{{ tour.adult_price }}');
+        const kidsPrice = parseFloat('{{ tour.kids_price|default:"0" }}');
+        const childrenPrice = parseFloat('{{ tour.children_price|default:"0" }}');
+        
+        function calculateTotalPrice() {
+            const adults = parseInt(adultsInput.value) || 0;
+            const kids = parseInt(kidsInput.value) || 0;
+            const children = parseInt(childrenInput.value) || 0;
+            
+            let total = (adults * adultPrice) + (kids * kidsPrice) + (children * childrenPrice);
+            
+            // Validar y aplicar descuentos solo si los precios no están vacíos o nulos
+            const price2 = '{{ tour.adult_price_2|default:"" }}';
+            const price3 = '{{ tour.adult_price_3|default:"" }}';
+            const price4 = '{{ tour.adult_price_4|default:"" }}';
+
+            if (adults >= 4 && price4 && !isNaN(parseFloat(price4))) {
+                total = adults * parseFloat(price4) + (kids * kidsPrice) + (children * childrenPrice);
+            } else if (adults >= 3 && price3 && !isNaN(parseFloat(price3))) {
+                total = adults * parseFloat(price3) + (kids * kidsPrice) + (children * childrenPrice);
+            } else if (adults >= 2 && price2 && !isNaN(parseFloat(price2))) {
+                total = adults * parseFloat(price2) + (kids * kidsPrice) + (children * childrenPrice);
+            }
+            
+            totalPriceElement.textContent = '$' + total.toFixed(2);
+        }
+        
+        adultsInput.addEventListener('input', calculateTotalPrice);
+        kidsInput.addEventListener('input', calculateTotalPrice);
+        childrenInput.addEventListener('input', calculateTotalPrice);
+        
+        // Calculate initial price
+        calculateTotalPrice();
+        
+        // Handle form submission with loading animation
+        const form = document.getElementById('booking-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+        
+        form.addEventListener('submit', function(e) {
+            // Show loading animation
+            btnText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-flex';
+            loadingSpinner.style.alignItems = 'center';
+            loadingSpinner.style.gap = '8px';
+            
+            // Disable submit button to prevent multiple submissions
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'not-allowed';
+        });
+    });
+</script>
+{% endblock %}

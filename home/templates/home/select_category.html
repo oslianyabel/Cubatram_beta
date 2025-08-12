@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'app/css/phone5.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/select_category6.css' %}">
+{% endblock %}
+
+{% block phone %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone2 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone3 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone4 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block phone5 %}
+<a href="" id="phone">{{ destination_selected.phone }}</a>
+{% endblock %}
+
+{% block destinations_options %}
+    {% for destination in destinations %}
+        <option value="{{ destination.slug }}" {% if destination.id == destination_selected.id %} selected {% endif %}>{{ destination.name }}</option>
+    {% endfor %}
+{% endblock %}
+
+{% block category_options %}
+    {% for category in categories %}
+        <option value="{{ category.slug }}">{{ category.title }}</option>
+    {% endfor %}
+{% endblock category_options %}
+
+{% block content %}
+    <section class="cards category-grid">
+        {% for category in categories %}
+            <a href="{% url 'tour_list' destination_selected.slug category.slug %}" class="card" style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}{% static 'img/card.png' %}{% endif %}');">
+                <h1 class="card-title">{{ category.title }}</h1>
+                <button class="card-btn">{% trans "View Tours" %}</button>
+            </a>
+        {% endfor %}
+    </section>
+
+    <section id="map-section">
+        <div class="destination-info">
+            <h1 class="destination-title">
+                {{ destination_selected.name }}
+            </h1>
+            <div class="destination-text">
+                <p>{{ destination_selected.para1 }}</p>
+
+                <p>{{ destination_selected.para2 }}</p>
+
+                <p>{{ destination_selected.para3 }}</p>
+            </div>
+        </div>
+
+        <img id="map" src="{{ destination_selected.map_image.url }}" alt="map">
+    </section>
+{% endblock %}
+
+{% block footer-logo %}
+    <a href="{% url 'home' %}" class="fixed-logo" style="background-image: url('{% static 'svg/logo.svg' %}');"></a>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const destinationSelect = document.getElementById('destination-select');
+    const categorySelect = document.getElementById('category-select');
+    const findTourBtn = document.getElementById('find-tour-btn');
+
+    // Datos de categorías por destino
+    const categoriesByDestination = {
+        {% for destination in destinations %}
+            '{{ destination.slug }}': [
+                {% for category in destination.categories.all %}
+                    {slug: '{{ category.slug }}', title: '{{ category.title }}'}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    // Función para actualizar las opciones de categoría y seleccionar la primera
+    function updateCategoryOptions(destinationSlug) {
+        categorySelect.innerHTML = ''; // Limpiar opciones
+        
+        if (destinationSlug && categoriesByDestination[destinationSlug]) {
+            const categories = categoriesByDestination[destinationSlug];
+            
+            // Agregar todas las categorías y seleccionar la primera
+            categories.forEach((category, index) => {
+                const option = document.createElement('option');
+                option.value = category.slug;
+                option.textContent = category.title;
+                categorySelect.appendChild(option);
+                
+                // Seleccionar la primera categoría automáticamente
+                if (index === 0) {
+                    option.selected = true;
+                }
+            });
+        }
+    }
+
+    // Event listener para cambios en el select de destino
+    destinationSelect.addEventListener('change', function() {
+        updateCategoryOptions(this.value);
+    });
+
+    // Inicializar con la primera categoría del primer destino (si existe)
+    if (destinationSelect.value) {
+        updateCategoryOptions(destinationSelect.value);
+    }
+});
+</script>
+{% endblock %}

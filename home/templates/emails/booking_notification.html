@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>New reservation received!</h2>
+    
+    <h3>Tour details:</h3>
+    <p><strong>Tour:</strong> {{ booking.tour.title }}</p>
+    <p><strong>Date:</strong> {{ booking.date }}</p>
+    <p><strong>Adults:</strong> {{ booking.adults }}</p>
+    <p><strong>Kids (6-12 years):</strong> {{ booking.kids }}</p>
+    <p><strong>Children (0-5 years):</strong> {{ booking.children }}</p>
+    <p><strong>Total price:</strong> ${{ booking.total_price }}</p>
+    
+    <h3>Client information:</h3>
+    <p><strong>Name:</strong> {{ booking.full_name }}</p>
+    <p><strong>Email:</strong> {{ booking.email }}</p>
+    <p><strong>Phone:</strong> {{ booking.phone }}</p>
+    <p><strong>Country:</strong> {{ booking.country }}</p>
+    
+    <h3>Special requests:</h3>
+    <p>{{ booking.special_requests }}</p>
+</body>
+</html>
