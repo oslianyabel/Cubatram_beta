@@ -1,0 +1,7 @@
+django
+django-import-export
+openpyxl
+django-modeltranslation
+requests
+django-recaptcha==3.0.0
+Pillow

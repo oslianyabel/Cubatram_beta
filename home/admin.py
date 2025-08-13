@@ -46,8 +46,29 @@ class SocialMediaLinkResource(resources.ModelResource):
         model = SocialMediaLink
 
 
+class HeroSectionResource(resources.ModelResource):
+    class Meta:
+        model = HeroSection
+
+
+class InfoSectionResource(resources.ModelResource):
+    class Meta:
+        model = InfoSection
+
+
+class InfoPointResource(resources.ModelResource):
+    class Meta:
+        model = InfoPoint
+
+
+class ContactInfoResource(resources.ModelResource):
+    class Meta:
+        model = ContactInfo
+
+
 @admin.register(HeroSection)
-class HeroSectionAdmin(admin.ModelAdmin):
+class HeroSectionAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
+    resource_class = HeroSectionResource
     list_display = (
         "name",
         "title1",
@@ -145,9 +166,16 @@ class InfoPointInline(admin.TabularInline):
 
 
 @admin.register(InfoSection)
-class InfoSectionAdmin(admin.ModelAdmin):
+class InfoSectionAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
+    resource_class = InfoSectionResource
     list_display = ("title", "is_active")
     inlines = [InfoPointInline]
+
+
+@admin.register(InfoPoint)
+class InfoPointAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
+    resource_class = InfoPointResource
+    list_display = ("info_section", "content", "display_order")
 
 
 @admin.register(Booking)
@@ -167,7 +195,8 @@ class BookingAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
 
 
 @admin.register(ContactInfo)
-class ContactInfoAdmin(admin.ModelAdmin):
+class ContactInfoAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
+    resource_class = ContactInfoResource
     def has_add_permission(self, request):
         return not ContactInfo.objects.exists()
 
