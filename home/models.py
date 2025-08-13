@@ -8,7 +8,6 @@ class Destination(models.Model):
 
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
     para1 = models.TextField(blank=True)
     para2 = models.TextField(blank=True)
     para3 = models.TextField(blank=True)
