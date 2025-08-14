@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 14:24-0400\n"
+"POT-Creation-Date: 2025-08-13 23:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
-
-#: .\home\templates\emails\booking_notification.html:5
-msgid "New reservation received!"
-msgstr "¡Nueva reserva recibida!"
-
-#: .\home\templates\emails\booking_notification.html:7
-msgid "Tour details:"
-msgstr "Detalles del tour:"
-
-#: .\home\templates\emails\booking_notification.html:8
-#: .\home\templates\home\tour_detail.html:78
-msgid "Tour"
-msgstr "Tour"
-
-#: .\home\templates\emails\booking_notification.html:9
-#: .\home\templates\home\tour_detail.html:79
-#: .\home\templates\home\tour_detail.html:98
-msgid "Date"
-msgstr "Fecha"
-
-#: .\home\templates\emails\booking_notification.html:10
-#: .\home\templates\home\tour_detail.html:80
-msgid "Adults"
-msgstr "Adultos"
-
-#: .\home\templates\emails\booking_notification.html:11
-msgid "Kids (6-12 years)"
-msgstr "Niños (6-12 años)"
-
-#: .\home\templates\emails\booking_notification.html:12
-msgid "Children (0-5 years)"
-msgstr "Bebés (0-5 años)"
-
-#: .\home\templates\emails\booking_notification.html:13
-msgid "Total price"
-msgstr "Precio total"
-
-#: .\home\templates\emails\booking_notification.html:15
-msgid "Client information:"
-msgstr "Información del cliente:"
-
-#: .\home\templates\emails\booking_notification.html:16
-msgid "Name"
-msgstr "Nombre"
-
-#: .\home\templates\emails\booking_notification.html:17
-#: .\home\templates\home\tour_detail.html:131
-msgid "Email"
-msgstr "Correo electrónico"
-
-#: .\home\templates\emails\booking_notification.html:18
-msgid "Phone"
-msgstr "Teléfono"
-
-#: .\home\templates\emails\booking_notification.html:19
-msgid "Country"
-msgstr "País"
-
-#: .\home\templates\emails\booking_notification.html:21
-msgid "Special requests:"
-msgstr "Solicitudes especiales:"
 
 #: .\home\templates\home\home.html:26 .\home\templates\home\home.html:31
 #: .\home\templates\home\home.html:35 .\home\templates\home\home.html:39
@@ -97,6 +36,19 @@ msgstr "Precio de Niños"
 #: .\home\templates\home\tour_detail.html:48
 msgid "Children Price"
 msgstr "Precio de Bebés"
+
+#: .\home\templates\home\tour_detail.html:78
+msgid "Tour"
+msgstr "Tour"
+
+#: .\home\templates\home\tour_detail.html:79
+#: .\home\templates\home\tour_detail.html:98
+msgid "Date"
+msgstr "Fecha"
+
+#: .\home\templates\home\tour_detail.html:80
+msgid "Adults"
+msgstr "Adultos"
 
 #: .\home\templates\home\tour_detail.html:81
 msgid "Kids"
@@ -142,6 +94,10 @@ msgstr "Detalles de Contacto"
 msgid "Full Name"
 msgstr "Nombre Completo"
 
+#: .\home\templates\home\tour_detail.html:131
+msgid "Email"
+msgstr "Correo electrónico"
+
 #: .\home\templates\home\tour_detail.html:136
 msgid "Phone Number"
 msgstr "Número de Teléfono"
@@ -159,23 +115,21 @@ msgid "Total (USD)"
 msgstr "Total (USD)"
 
 #: .\home\templates\home\tour_list.html:56
-#: .\home\templates\home\tour_list.html:80
 msgid "Adult"
 msgstr "Precio de Adultos"
 
-#: .\notas.txt:31
-msgid "Bienvenido a nuestro sitio"
-msgstr ""
+#: .\home\templates\home\tour_list.html:74
+msgid "No tours at this time"
+msgstr "No hay tours en este momento"
 
-#: .\notas.txt:32
-#, python-format
-msgid "Este tour tiene una duración de %(duration)s."
-msgstr ""
+#: .\home\templates\home\tour_list.html:75
+msgid "Check out our Top 10 options"
+msgstr "Consulta nuestras 10 mejores opciones"
 
 #: .\venv\Lib\site-packages\captcha\fields.py:20
 #: .\venv\Lib\site-packages\captcha\fields.py:21
 msgid "Error verifying reCAPTCHA, please try again."
-msgstr ""
+msgstr "Error al verificar reCAPTCHA, por favor, inténtelo de nuevo."
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
@@ -612,30 +566,30 @@ msgstr ""
 msgid "Value must be valid JSON."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:978
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:979
 #, python-format
 msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:981
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:982
 msgid "Foreign Key (type determined by related field)"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1275
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1276
 msgid "One-to-one relationship"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1332
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1333
 #, python-format
 msgid "%(from)s-%(to)s relationship"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1334
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1335
 #, python-format
 msgid "%(from)s-%(to)s relationships"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1382
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1383
 msgid "Many-to-many relationship"
 msgstr ""
 
@@ -1401,10 +1355,6 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\venv\Lib\site-packages\isort\main.py:159
-msgid "show this help message and exit"
-msgstr ""
-
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:14
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:53
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:61
@@ -1459,3 +1409,33 @@ msgstr ""
 #: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
 msgid "None"
 msgstr ""
+
+#~ msgid "New reservation received!"
+#~ msgstr "¡Nueva reserva recibida!"
+
+#~ msgid "Tour details:"
+#~ msgstr "Detalles del tour:"
+
+#~ msgid "Kids (6-12 years)"
+#~ msgstr "Niños (6-12 años)"
+
+#~ msgid "Children (0-5 years)"
+#~ msgstr "Bebés (0-5 años)"
+
+#~ msgid "Total price"
+#~ msgstr "Precio total"
+
+#~ msgid "Client information:"
+#~ msgstr "Información del cliente:"
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
+
+#~ msgid "Phone"
+#~ msgstr "Teléfono"
+
+#~ msgid "Country"
+#~ msgstr "País"
+
+#~ msgid "Special requests:"
+#~ msgstr "Solicitudes especiales:"

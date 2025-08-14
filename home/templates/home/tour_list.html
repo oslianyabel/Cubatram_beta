@@ -70,16 +70,16 @@
     {% else %}
         <section class="no-tours-found">
             <div class="ntf-card">
-                <div class="ntf-icon">😕</div>
-                <h2 class="ntf-title">Not tours found</h2>
-                <p class="ntf-sub">Try changing the destination or category.</p>
+                <div class="ntf-icon">🙂</div>
+                <h2 class="ntf-title">{% trans "No tours at this time" %}</h2>
+                <p class="ntf-sub">{% trans "Check out our Top 10 options" %}</p>
             </div>
         </section>
         <style>
         .no-tours-found{display:flex;align-items:center;justify-content:center;padding:60px 16px}
-        .ntf-card{max-width:800px;width:100%;text-align:center;background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%);border:2px solid #ff6b6b;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,.15);padding:32px;animation:pop .6s ease}
+        .ntf-card{max-width:800px;width:100%;text-align:center;background:#f3f4f6;border:2px solid #d1d5db;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,.08);padding:32px;animation:pop .6s ease}
         .ntf-icon{font-size:56px;margin-bottom:12px}
-        .ntf-title{margin:0;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:#c0392b;font-size:28px}
+        .ntf-title{margin:0;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:#374151;font-size:28px}
         .ntf-sub{margin:8px 0 0;color:#6b7280;font-size:16px}
         @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
         @media (min-width:768px){.ntf-title{font-size:36px}.ntf-sub{font-size:18px}}
