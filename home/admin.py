@@ -120,9 +120,9 @@ class TourAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
     resource_class = TourResource
     list_display = (
         "title",
+        "contact_name",
         "price_display",
         "main_image_preview",
-        "link",
         "is_featured",
         "is_active",
     )

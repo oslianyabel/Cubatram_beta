@@ -56,11 +56,7 @@
                                 <b class="adult">{% trans "Adult" %}</b>
                                 <b class="price">${{ tour.adult_price }} <span class="USD">USD</span></b>
                             </div>
-                            {% if tour.link %}
-                                <a href="{{tour.link}}" class="book-now">BOOK NOW</a>
-                            {% else %}
-                                <a href="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" class="book-now">BOOK NOW</a>
-                            {% endif %}
+                            <a href="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" class="book-now">BOOK NOW</a>
                         </div>
                     </div>
                 </div>

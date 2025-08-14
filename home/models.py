@@ -116,11 +116,10 @@ class Tour(models.Model):
     image3 = models.ImageField(upload_to="tours/", null=True, blank=True)
     image4 = models.ImageField(upload_to="tours/", null=True, blank=True)
     image5 = models.ImageField(upload_to="tours/", null=True, blank=True)
-    link = models.URLField(
-        max_length=500,
+    reservation_widget = models.TextField(
         blank=True,
         null=True,
-        help_text="External link for reservations or more information",
+        help_text="Paste external booking widget embed code (e.g., script/iframe)",
     )
     is_featured = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

@@ -4,7 +4,7 @@
 
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'app/css/phone5.css' %}">
-<link rel="stylesheet" href="{% static 'app/css/tour_detail5.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/tour_detail6.css' %}">
 {% endblock %}
 
 {% block phone %}
@@ -69,27 +69,30 @@
         </div>
 
         <div class="book">
-            {% if messages %}
-                <div class="success-message">
-                    {% for message in messages %}
-                        <h1 class="book-title">{{ message }}</h1>
-                        {% if form_data %}
-                            <div class="summary">
-                                <p><strong>{% trans "Tour" %}:</strong> {{ tour.title }}</p>
-                                <p><strong>{% trans "Date" %}:</strong> {{ form_data.date }}</p>
-                                <p><strong>{% trans "Adults" %}:</strong> {{ form_data.adults }}</p>
-                                <p><strong>{% trans "Kids" %}:</strong> {{ form_data.kids }}</p>
-                                <p><strong>{% trans "Children" %}:</strong> {{ form_data.children }}</p>
-                                <p><strong>{% trans "Total Price" %}:</strong> ${{ form_data.total_price }} USD</p>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+            {% if tour.reservation_widget %}
+                {{ tour.reservation_widget|safe }}
             {% else %}
-                <h1 class="book-title">{% trans "Book Your Tour" %}</h1>
-            {% endif %}
+                {% if messages %}
+                    <div class="success-message">
+                        {% for message in messages %}
+                            <h1 class="book-title">{{ message }}</h1>
+                            {% if form_data %}
+                                <div class="summary">
+                                    <p><strong>{% trans "Tour" %}:</strong> {{ tour.title }}</p>
+                                    <p><strong>{% trans "Date" %}:</strong> {{ form_data.date }}</p>
+                                    <p><strong>{% trans "Adults" %}:</strong> {{ form_data.adults }}</p>
+                                    <p><strong>{% trans "Kids" %}:</strong> {{ form_data.kids }}</p>
+                                    <p><strong>{% trans "Children" %}:</strong> {{ form_data.children }}</p>
+                                    <p><strong>{% trans "Total Price" %}:</strong> ${{ form_data.total_price }} USD</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h1 class="book-title">{% trans "Book Your Tour" %}</h1>
+                {% endif %}
 
-            <form action="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" method="post" id="booking-form">
+                <form action="{% url 'tour_detail' destination_selected.slug category_selected.slug tour.slug %}" method="post" id="booking-form">
                 {% csrf_token %}
                 
                 <div class="form-section">
@@ -173,7 +176,8 @@
                         Sending...
                     </span>
                 </button>
-            </form>
+                </form>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
