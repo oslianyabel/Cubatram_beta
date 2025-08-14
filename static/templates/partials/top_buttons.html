@@ -1,0 +1,5 @@
+{% load i18n %}
+
+<a href="{% if navbar.about_us %}{{ navbar.about_us }}{% endif %}" class="top-btn">{% trans "About Us" %}</a>
+<a href="{% if navbar.blog %}{{ navbar.blog }}{% endif %}" class="top-btn">{% trans "Blog" %}</a>
+<a href="{% if navbar.faqs %}{{ navbar.faqs }}{% endif %}" class="top-btn">{% trans "FAQs" %}</a>

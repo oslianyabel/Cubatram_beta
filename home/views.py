@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
 
-from .models import Booking, Category, ContactInfo, Destination, HeroSection, Tour
+from .models import Booking, Category, ContactInfo, Destination, HeroSection, Tour, NavBar
 from .notifications import send_admin_notification
 
 
@@ -17,6 +17,7 @@ def tour_detail(request, destination_slug, category_slug, tour_slug):
     )
     category_selected = get_object_or_404(Category, slug=category_slug, is_active=True)
     hero_section = HeroSection.objects.filter(is_active=True).first()
+    navbar = NavBar.objects.filter(is_active=True).first()
 
     recaptcha_error = None
     if request.method == "POST":
@@ -122,6 +123,7 @@ def tour_detail(request, destination_slug, category_slug, tour_slug):
         "destination_selected": destination_selected,
         "category_selected": category_selected,
         "hero_section": hero_section,
+        "navbar": navbar,
         "form_data": form_data,
         "recaptcha_site_key": settings.RECAPTCHA_PUBLIC_KEY,
         "recaptcha_error": recaptcha_error,
@@ -131,6 +133,7 @@ def tour_detail(request, destination_slug, category_slug, tour_slug):
 
 def home(request):
     hero_section = HeroSection.objects.filter(is_active=True).first()
+    navbar = NavBar.objects.filter(is_active=True).first()
 
     categories = Category.objects.filter(is_active=True)
     destinations = Destination.objects.filter(is_active=True)
@@ -144,6 +147,7 @@ def home(request):
 
     context = {
         "hero_section": hero_section,
+        "navbar": navbar,
         "categories": categories,
         "destinations": destinations,
         "featured_destinations": featured_destinations,
@@ -157,6 +161,7 @@ def destination_selected(request, slug):
     destination_selected = get_object_or_404(Destination, slug=slug, is_active=True)
 
     hero_section = HeroSection.objects.filter(is_active=True).first()
+    navbar = NavBar.objects.filter(is_active=True).first()
 
     categories = destination_selected.categories.all()  # type: ignore
     destinations = Destination.objects.filter(is_active=True)
@@ -168,6 +173,7 @@ def destination_selected(request, slug):
     context = {
         "destination_selected": destination_selected,
         "hero_section": hero_section,
+        "navbar": navbar,
         "categories": categories,
         "destinations": destinations,
         "featured_tours": featured_tours,
@@ -189,6 +195,7 @@ def tour_list(request, destination_slug, category_slug):
     categories = Category.objects.filter(is_active=True)
     destinations = Destination.objects.filter(is_active=True)
     hero_section = HeroSection.objects.filter(is_active=True).first()
+    navbar = NavBar.objects.filter(is_active=True).first()
     contact_info = ContactInfo.objects.first()
 
     context = {
@@ -198,6 +205,7 @@ def tour_list(request, destination_slug, category_slug):
         "categories": categories,
         "destinations": destinations,
         "hero_section": hero_section,
+        "navbar": navbar,
         "contact_info": contact_info,
     }
     return render(request, "home/tour_list.html", context)

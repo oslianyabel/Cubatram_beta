@@ -12,6 +12,7 @@ from .models import (
     InfoPoint,
     InfoSection,
     SocialMediaLink,
+    NavBar,
     Tour,
 )
 
@@ -64,6 +65,11 @@ class InfoPointResource(resources.ModelResource):
 class ContactInfoResource(resources.ModelResource):
     class Meta:
         model = ContactInfo
+
+
+class NavBarResource(resources.ModelResource):
+    class Meta:
+        model = NavBar
 
 
 @admin.register(HeroSection)
@@ -209,3 +215,10 @@ class SocialMediaLinkAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: i
     resource_class = SocialMediaLinkResource
     list_display = ("name", "url", "display_order")
     list_editable = ("display_order",)
+
+
+@admin.register(NavBar)
+class NavBarAdmin(ImportExportModelAdmin, admin.ModelAdmin):  # type: ignore
+    resource_class = NavBarResource
+    list_display = ("name", "about_us", "blog", "faqs")
+    search_fields = ("about_us", "blog", "faqs")

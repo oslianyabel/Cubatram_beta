@@ -264,3 +264,30 @@ class SocialMediaLink(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class NavBar(models.Model):
+    name = models.CharField(max_length=50)
+    
+    about_us = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="External link for about us page",
+    )
+    
+    blog = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="External link for blog page",
+    )
+    
+    faqs = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="External link for FAQs page",
+    )
+    
+    is_active = models.BooleanField(default=True)
