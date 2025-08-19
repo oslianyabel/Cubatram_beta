@@ -1,7 +1,11 @@
-#phone {
-    margin: 12px 35px;
+.fixed-phone {
     position: absolute;
-    right: 0;
+    top: 12px;
+    right: 35px;
+    z-index: 15;
+}
+
+#phone {
     text-decoration: none;
     color: #fff;
     font-size: 24px;

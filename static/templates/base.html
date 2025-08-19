@@ -19,32 +19,33 @@
         
         <div class="header-carousel">
             <div class="header-slide active" style="background-image: url('{% if hero_section.background_image %}{{ hero_section.background_image.url }}{% else %}{% static 'img/banner.jpg' %}{% endif %}');">
-                {% block phone %}{% endblock phone %}
             </div>
 
             {% if hero_section.background_image2 %}
                 <div class="header-slide" style="background-image: url('{{ hero_section.background_image2.url }}');">
-                    {% block phone2 %}{% endblock phone2 %}
                 </div>
             {% endif %}
 
             {% if hero_section.background_image3 %}
                 <div class="header-slide" style="background-image: url('{{ hero_section.background_image3.url }}');">
-                    {% block phone3 %}{% endblock phone3 %}
                 </div>
             {% endif %}
 
             {% if hero_section.background_image4 %}
                 <div class="header-slide" style="background-image: url('{{ hero_section.background_image4.url }}');">
-                    {% block phone4 %}{% endblock phone4 %}
                 </div>
             {% endif %}
             
             {% if hero_section.background_image5 %}
                 <div class="header-slide" style="background-image: url('{{ hero_section.background_image5.url }}');">
-                    {% block phone5 %}{% endblock phone5 %}
                 </div>
             {% endif %}
+            
+            <!-- Fixed phone element outside slides -->
+            <div class="fixed-phone">
+                {% block phone %}{% endblock phone %}
+            </div>
+            
             <div class="top-buttons">
                 {% include 'partials/top_buttons.html' %}
             </div>

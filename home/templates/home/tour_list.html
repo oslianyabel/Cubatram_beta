@@ -11,22 +11,6 @@
 <a href="" id="phone">CALL {{ destination_selected.phone }}</a>
 {% endblock %}
 
-{% block phone2 %}
-<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
-{% endblock %}
-
-{% block phone3 %}
-<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
-{% endblock %}
-
-{% block phone4 %}
-<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
-{% endblock %}
-
-{% block phone5 %}
-<a href="" id="phone">CALL {{ destination_selected.phone }}</a>
-{% endblock %}
-
 {% block destinations_options %}
     {% for destination in destinations %}
         <option value="{{ destination.slug }}" {% if destination.id == destination_selected.id %} selected {% endif %}>{{ destination.name }}</option>
