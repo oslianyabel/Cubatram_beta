@@ -176,6 +176,11 @@ display: flex;
     border-radius: 0;
 }
 
+.footer-container {
+    background-color: #fff;
+    color: var(--color-text);
+}
+
 @media (max-width: 768px) {
     .tour-book {
         flex-direction: column;
