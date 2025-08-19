@@ -111,7 +111,7 @@ body {
 .fixed-logo {
     position: absolute;
     top: 5%;
-    left: 20%;
+    left: 5%;
     width: 800px;
     height: 200px;
     background-repeat: no-repeat;
@@ -243,7 +243,7 @@ main {
 
 @media (max-width: 900px) {
     .fixed-logo {
-        margin-top: 10px;
+        margin-top: 20px;
         width: 400px;
         height: 120px;
     }
@@ -251,7 +251,7 @@ main {
 
 @media (max-width: 750px) {
     .fixed-logo {
-        margin-top: 15px;
+        margin-top: 30px;
         width: 350px;
         height: 100px;
     }
@@ -266,7 +266,7 @@ main {
     }
 
     .fixed-logo {
-        margin-top: 18px;
+        margin-top: 35px;
         width: 300px;
         height: 100px;
     }
@@ -278,7 +278,7 @@ main {
 
 @media (max-width: 600px) {
     .fixed-logo {
-        margin-top: 20px;
+        margin-top: 40px;
         width: 250px;
         height: 100px;
     }
@@ -298,12 +298,6 @@ main {
     .button-list {
         flex-direction: column;
         gap: 10px;
-    }
-
-    .fixed-logo {
-        margin-top: 25px;
-        width: 200px;
-        height: 100px;
     }
 
     .filter-btn {
@@ -332,18 +326,11 @@ main {
     }
 
     .fixed-images {
-        right: 10px;
-        gap: 8px;
+        display: none;
     }
 
     .fixed-image {
-        width: 80px;
-    }
-}
-
-@media (min-width: 1000px) {
-    .fixed-logo {
-        left: 5%;
+        display: none;
     }
 }
 
@@ -439,4 +426,8 @@ main {
 
 .footer-card {
     flex: 1;
+}
+
+.footer-card-logo {
+    overflow-x: hidden;
 }
