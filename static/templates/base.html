@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="{% static 'svg/favicon.svg' %}">
     <title>Cubatram</title>
-    <link rel="stylesheet" href="{% static 'css/base17.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base18.css' %}">
     {% block extracss %}
     {% endblock %}
 </head>
@@ -47,6 +47,12 @@
             {% endif %}
             <div class="top-buttons">
                 {% include 'partials/top_buttons.html' %}
+            </div>
+            
+            <!-- Fixed images below top buttons -->
+            <div class="fixed-images">
+                <img src="{% static 'img/kiosk.png' %}" alt="Kiosk" class="fixed-image">
+                <img src="{% static 'img/Ecotur.png' %}" alt="Ecotur" class="fixed-image">
             </div>
         </div>
 
