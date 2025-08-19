@@ -1,0 +1,26 @@
+.fixed-phone {
+    position: absolute;
+    top: 12px;
+    right: 35px;
+    z-index: 15;
+}
+
+#phone {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.fixed-images {
+    top: 120px !important;
+}
+
+.top-buttons {
+    margin: 45px 30px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 15px;
+}
