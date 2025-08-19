@@ -131,20 +131,8 @@
         <div class="footer-container">
             <h1>WY BOOK WITH US</h1>
             <div class="footer-cards">
-                <div class="footer-card">
-                    <img src="{% static 'svg/logo.svg' %}" alt="" class="footer-card-logo">
-                    <p class="footer-card-text">We don’t just talk about Cuba—we live it. Being rooted here gives us insider access to places, people, and stories you won’t find online. Our guidance comes from real connections and experiences, offering you Cuba as it truly is.</p>
-                </div>
-
-                <div class="footer-card">
-                    <img src="{% static 'svg/logo.svg' %}" alt="" class="footer-card-logo">
-                    <p class="footer-card-text">We design trips around your interests, schedule, and budget—whether built from scratch or tailored from our curated routes</p>
-                </div>
-
-                <div class="footer-card">
-                    <img src="{% static 'svg/logo.svg' %}" alt="" class="footer-card-logo">
-                    <p class="footer-card-text">Direct from Cuba’s top suppliers—no middleman—so you get the highest quality at the best price.</p>
-                </div>
+                {% block footer-cards %}
+                {% endblock %}
             </div>
         </div>
     </footer>
