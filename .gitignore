@@ -4,5 +4,4 @@ __pycache__/
 .env
 notas.txt
 staticfiles/
-*.sqlite3
 migrations/
