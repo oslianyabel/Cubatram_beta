@@ -21,13 +21,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from home.views import destination_selected, home, tour_detail, tour_list
+from home.views import destination_selected, home, tour_detail, tour_list, pay
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
 ] + i18n_patterns(
     path("admin/", admin.site.urls),
     path("", home, name="home"),
+    path("pay/", pay, name="pay"),
     path(
         "tours/destination/<slug:slug>/",
         destination_selected,

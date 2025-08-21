@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-patf*r7(amx9h*w+(nx^pe!eog&57a6j(g_%c40wv=2(y)4df8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['osliani.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ['osliani.pythonanywhere.com', 'localhost', 'kiosktours.com', '203.161.48.201', 'www.kiosktours.com']
 
 
 # Application definition
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'home.middleware.LicenseMiddleware',
 ]
 
 ROOT_URLCONF = 'cubatram.urls'

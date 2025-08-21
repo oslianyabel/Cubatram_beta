@@ -13,6 +13,22 @@
     {% endblock %}
 </head>
 <body>
+      <div style="
+        position: fixed; 
+        bottom: 10px; 
+        right: 10px; 
+        opacity: 0.2; 
+        font-size: 20px; 
+        color: red; 
+        pointer-events: none;
+    ">
+        {% if request.days_left >= 0 and request.days_left <= 7 %}
+            {{ request.days_left }} días restantes
+        {% endif %}
+	{% if request.days_left < 0 %}
+            Licencia expirada
+        {% endif %}
+    </div>
     <header>
         <!-- Logo fijo fuera del carousel -->
         <a href="{% url 'home' %}" class="logo fixed-logo" style="background-image: url('{% static 'svg/logo.svg' %}');"></a>

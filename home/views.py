@@ -8,6 +8,10 @@ from .models import Booking, Category, ContactInfo, Destination, HeroSection, To
 from .notifications import send_admin_notification
 
 
+def pay(request):
+    return render(request, "home/pay.html")
+
+
 def tour_detail(request, destination_slug, category_slug, tour_slug):
     tour = get_object_or_404(Tour, slug=tour_slug, is_active=True)
     categories = Category.objects.filter(is_active=True)
